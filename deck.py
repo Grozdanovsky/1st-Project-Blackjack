@@ -33,7 +33,7 @@ class Deck:
             item.print_card()
 
     def get_card(self):
-        card_index = random.randint(1,len(self.playable_list))
+        card_index = random.randint(1,len(self.playable_list)-1)
         card = self.playable_list.pop(card_index)
         return card
 
