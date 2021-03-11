@@ -39,4 +39,3 @@ class Deck:
 
     def shuffle_cards(self):
         random.shuffle(self.static_list)
-

@@ -8,3 +8,9 @@ class Card:
 
     def print_card(self):
         print(self.value,self.suit)
+
+    def get_suit(self):
+        return self.suit
+
+    def set_value(self,new_value):
+        self.value = new_value
