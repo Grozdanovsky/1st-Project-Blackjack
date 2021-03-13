@@ -14,7 +14,7 @@ def print_player_cards(player, name):
 def add_sum_cards(player):
     sum1 = 0
     for item in player:
-        if item.get_value() > 10:
+        if item.get_value() > 10 and item.get_value() != 11:
             sum1 += 10
         else:
             sum1 += item.get_value()
@@ -22,15 +22,16 @@ def add_sum_cards(player):
     return sum1
 
 def compare_sums(player,dealer):
-    if (add_sum_cards(player) > add_sum_cards(dealer) and add_sum_cards(player) <= 21) or add_sum_cards(dealer) > 21 :
-        print_player_cards(player, "Your")
-        print_player_cards(dealer, "Dealers")
-        print("You WON!")
-
-    elif (add_sum_cards(dealer) >= add_sum_cards(player) and add_sum_cards(dealer) <= 21):
+    if (add_sum_cards(dealer) >= add_sum_cards(player) and add_sum_cards(dealer) <= 21):
         print_player_cards(player, "Your")
         print_player_cards(dealer, "Dealers")
         print("You Lost!")
+
+
+    elif (add_sum_cards(player) > add_sum_cards(dealer) and add_sum_cards(player) <= 21) or add_sum_cards(dealer) > 21 :
+        print_player_cards(player, "Your")
+        print_player_cards(dealer, "Dealers")
+        print("You WON!")
 
 def add_dealer_cards(player,dealer,c1):
     while add_sum_cards(dealer) <= 21 and add_sum_cards(dealer) <= add_sum_cards(player):
@@ -40,17 +41,17 @@ def add_dealer_cards(player,dealer,c1):
 
 
 def one_or_eleven(player):
-    list1 = []
-    sum1 = add_sum_cards(player)
-    if sum1 > 21:
-        for item in player:
-            if item.get_value() == 11:
-                item.set_value(1)
-                list1.append(item)
-            else:
-                list1.append(item)
 
-    return list1
+    for number in range(len(player)-1):
+        if player[number].get_value() == 11:
+            player[number].set_value(1)
+        break
+
+    return player
+
+
+
+
 
 
 def blackjack(player):

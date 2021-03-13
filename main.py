@@ -1,3 +1,4 @@
+import time
 from deck import *
 from functions import *
 
@@ -14,9 +15,11 @@ dealer.append(c1.get_card())
 dealer.append(c1.get_card())
 print_player_cards([dealer[0]],"Dealers")
 blackjack(player)
+
 while True:
     question = input("Do you want another card? ")
     if question.lower() == "yes":
+
         player.append(c1.get_card())
         #Printing player cards
         print_player_cards(player,"Your")
@@ -27,6 +30,7 @@ while True:
             player = one_or_eleven(player)
             if add_sum_cards(player) > 21:
                 print("You Lost!")
+                time.sleep(10)
                 break
 
 
@@ -34,11 +38,25 @@ while True:
     elif question.lower() == "no":
         if add_sum_cards(player) > add_sum_cards(dealer):
             add_dealer_cards(player, dealer, c1)
+        if add_sum_cards(player) == add_sum_cards(dealer):
+            print_player_cards(player, "Your")
+            print_player_cards(dealer, "Dealers")
+
+            time.sleep(10)
+            print("You Lost!")
+            break
+        if add_sum_cards(dealer) > 21:
+            dealer = one_or_eleven(dealer)
+            if add_sum_cards(dealer) > 21:
+                print_player_cards(dealer,"Dealers")
+                time.sleep(5)
+                print("You Won!")
+                break
         compare_sums(player, dealer)
         #Printing Player cards
 
+        time.sleep(10)
         break
-
 
 
 

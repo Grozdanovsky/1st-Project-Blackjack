@@ -12,7 +12,7 @@ class Deck:
         list_cards = []
 
         for item in range(4):
-            for item2 in range(1, 14):
+            for item2 in range(2, 14):
                 if item == 0:
                     c1 = Card(item2, "Diamonds")
                     list_cards.append(c1)
