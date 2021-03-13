@@ -42,15 +42,16 @@ while True:
             print_player_cards(player, "Your")
             print_player_cards(dealer, "Dealers")
 
-            time.sleep(10)
+
             print("You Lost!")
+            time.sleep(10)
             break
         if add_sum_cards(dealer) > 21:
             dealer = one_or_eleven(dealer)
             if add_sum_cards(dealer) > 21:
                 print_player_cards(dealer,"Dealers")
-                time.sleep(5)
                 print("You Won!")
+                time.sleep(10)
                 break
         compare_sums(player, dealer)
         #Printing Player cards

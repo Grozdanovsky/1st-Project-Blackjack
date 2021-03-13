@@ -1,8 +1,11 @@
 from static import special_cards
 def print_player_cards(player, name):
     print(f"{name} Cards")
+    brojac = 0
     for item in player:
         card = special_cards.get(item.get_value())
+        print(brojac)
+        brojac += 1
         if card:
             print(card, item.get_suit())
         else:
@@ -42,10 +45,12 @@ def add_dealer_cards(player,dealer,c1):
 
 def one_or_eleven(player):
 
-    for number in range(len(player)-1):
+    for number in range(len(player)):
+
         if player[number].get_value() == 11:
+
             player[number].set_value(1)
-        break
+            break
 
     return player
 
