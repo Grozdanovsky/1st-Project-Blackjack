@@ -32,6 +32,9 @@ class Deck:
         for item in self.playable_list:
             item.print_card()
 
+    def retun_cards(self):
+        return self.playable_list
+
     def get_card(self):
         card_index = random.randint(1,len(self.playable_list)-1)
         card = self.playable_list.pop(card_index)
@@ -39,3 +42,7 @@ class Deck:
 
     def shuffle_cards(self):
         random.shuffle(self.static_list)
+
+    def set_deck(self,c1,c2,c3,c4,c5):
+        self.playable_list = c1.retun_cards() + c2.retun_cards() + c3.retun_cards() + c4.retun_cards() + c5.retun_cards()
+        self.static_list = c1.retun_cards() + c2.retun_cards() + c3.retun_cards() + c4.retun_cards() + c5.retun_cards()
