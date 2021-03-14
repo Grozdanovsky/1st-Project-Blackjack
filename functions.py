@@ -1,11 +1,10 @@
 from static import special_cards
 def print_player_cards(player, name):
     print(f"{name} Cards")
-    brojac = 0
+
     for item in player:
         card = special_cards.get(item.get_value())
-        print(brojac)
-        brojac += 1
+
         if card:
             print(card, item.get_suit())
         else:
@@ -25,7 +24,7 @@ def add_sum_cards(player):
     return sum1
 
 def compare_sums(player,dealer):
-    if (add_sum_cards(dealer) >= add_sum_cards(player) and add_sum_cards(dealer) <= 21):
+    if (add_sum_cards(dealer) >= add_sum_cards(player) and add_sum_cards(dealer) <= 21) or add_sum_cards(player) > 21:
         print_player_cards(player, "Your")
         print_player_cards(dealer, "Dealers")
         print("You Lost!")
@@ -37,7 +36,7 @@ def compare_sums(player,dealer):
         print("You WON!")
 
 def add_dealer_cards(player,dealer,c1):
-    while add_sum_cards(dealer) <= 21 and add_sum_cards(dealer) <= add_sum_cards(player):
+    while add_sum_cards(dealer) <= 21 and add_sum_cards(dealer) < add_sum_cards(player):
         dealer.append(c1.get_card())
 
 
