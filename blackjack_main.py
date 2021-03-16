@@ -40,8 +40,6 @@ while play:
 
             if question.lower() == "yes":
                 player.append(main_deck.get_card())
-                print_player_cards(player,"Your")
-                print_player_cards([dealer[0]],"Dealers")
 
                 if add_sum_cards(player) > 21:
                     player = one_or_eleven(player)
@@ -49,6 +47,8 @@ while play:
                     if add_sum_cards(player) > 21:
                         balance -= bet
                         break
+                print_player_cards(player, "Your")
+                print_player_cards([dealer[0]], "Dealers")
 
             elif question.lower() == "no":
 
