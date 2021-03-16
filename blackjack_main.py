@@ -27,15 +27,23 @@ while play:
         main_deck.set_deck(c1,c2,c3,c4,c5)
         player = []
         dealer = []
+
         player.append(main_deck.get_card())
         player.append(main_deck.get_card())
         print_player_cards(player,"Your")
         dealer.append(main_deck.get_card())
         dealer.append(main_deck.get_card())
         print_player_cards([dealer[0]],"Dealers")
-        new_balance = blackjack(player,balance,bet)
-        balance = new_balance
+
+
         while True:
+
+            multiple = blackjack(player, balance, bet,False)
+            if multiple[0] > balance:
+                balance = multiple[0]
+                print(balance)
+                break
+
             question = input("Do you want another card? ")
 
             if question.lower() == "yes":
@@ -52,10 +60,10 @@ while play:
 
             elif question.lower() == "no":
 
-                if add_sum_cards(player) > add_sum_cards(dealer):
+                if add_sum_cards(player) > add_sum_cards(dealer) and add_sum_cards(dealer) < 17:
                     add_dealer_cards(player, dealer, main_deck)
 
-                if add_sum_cards(player) == add_sum_cards(dealer):
+                if add_sum_cards(player) == add_sum_cards(dealer) and add_sum_cards(dealer) > 17:
                     break
 
                 if add_sum_cards(dealer) > 21:
@@ -67,7 +75,9 @@ while play:
                     break
 
 
-        new_balance = compare_sums(player, dealer,balance,bet)
+
+
+        new_balance = compare_sums(player, dealer,balance,bet,multiple[1])
         balance = new_balance
         if balance == 0:
             print("You ran out of $$$. BYE")

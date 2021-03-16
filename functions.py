@@ -23,8 +23,8 @@ def add_sum_cards(player):
 
     return sum1
 
-def compare_sums(player,dealer,balance,bet):
-    if (add_sum_cards(dealer) >= add_sum_cards(player) and add_sum_cards(dealer) <= 21) or add_sum_cards(player) > 21:
+def compare_sums(player,dealer,balance,bet,blackjack):
+    if (add_sum_cards(dealer) > add_sum_cards(player) and add_sum_cards(dealer) <= 21) or add_sum_cards(player) > 21:
         balance -= bet
         print_player_cards(player, "Your")
         print_player_cards(dealer, "Dealers")
@@ -32,10 +32,17 @@ def compare_sums(player,dealer,balance,bet):
 
 
     elif (add_sum_cards(player) > add_sum_cards(dealer) and add_sum_cards(player) <= 21) or add_sum_cards(dealer) > 21 :
-        balance += bet
+        if blackjack:
+            pass
+        else:
+            balance += bet
+            print_player_cards(player, "Your")
+            print_player_cards(dealer, "Dealers")
+            print("You WON!")
+    elif (add_sum_cards(player) == add_sum_cards(dealer)) and add_sum_cards(player) >= 17:
         print_player_cards(player, "Your")
         print_player_cards(dealer, "Dealers")
-        print("You WON!")
+        print("Stand-off")
 
     return balance
 
@@ -43,8 +50,12 @@ def compare_sums(player,dealer,balance,bet):
 
 
 def add_dealer_cards(player,dealer,c1):
-    while add_sum_cards(dealer) <= 21 and add_sum_cards(dealer) < add_sum_cards(player):
-        dealer.append(c1.get_card())
+    while True:
+        if add_sum_cards(dealer) < 17:
+            dealer.append(c1.get_card())
+        else:
+            break
+
 
 
 
@@ -65,20 +76,23 @@ def one_or_eleven(player):
 
 
 
-def blackjack(player,balance,bet):
+def blackjack(player,balance,bet,won_blackjack):
     card1 = player[0].get_value()
     card2 = player[1].get_value()
     if (card1 == 1 or card1 == 11) and (card2 > 11 or card2 == 10):
         print("BLACKJACK!!!")
         balance += bet
+        won_blackjack = True
+
 
     elif (card1 > 11 or card1 == 10) and (card2 == 1 or card2 == 11):
         print("BLACKJACK!!!")
         balance += bet
+        won_blackjack = True
 
     else:
         pass
 
-    return balance
+    return balance , won_blackjack
 
 
