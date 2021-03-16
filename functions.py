@@ -23,17 +23,24 @@ def add_sum_cards(player):
 
     return sum1
 
-def compare_sums(player,dealer):
+def compare_sums(player,dealer,balance,bet):
     if (add_sum_cards(dealer) >= add_sum_cards(player) and add_sum_cards(dealer) <= 21) or add_sum_cards(player) > 21:
+        balance -= bet
         print_player_cards(player, "Your")
         print_player_cards(dealer, "Dealers")
         print("You Lost!")
 
 
     elif (add_sum_cards(player) > add_sum_cards(dealer) and add_sum_cards(player) <= 21) or add_sum_cards(dealer) > 21 :
+        balance += bet
         print_player_cards(player, "Your")
         print_player_cards(dealer, "Dealers")
         print("You WON!")
+
+    return balance
+
+
+
 
 def add_dealer_cards(player,dealer,c1):
     while add_sum_cards(dealer) <= 21 and add_sum_cards(dealer) < add_sum_cards(player):
@@ -58,14 +65,20 @@ def one_or_eleven(player):
 
 
 
-def blackjack(player):
+def blackjack(player,balance,bet):
     card1 = player[0].get_value()
     card2 = player[1].get_value()
     if (card1 == 1 or card1 == 11) and (card2 > 11 or card2 == 10):
         print("BLACKJACK!!!")
-        quit()
+        balance += bet
+
     elif (card1 > 11 or card1 == 10) and (card2 == 1 or card2 == 11):
         print("BLACKJACK!!!")
-        quit()
+        balance += bet
+
     else:
         pass
+
+    return balance
+
+
