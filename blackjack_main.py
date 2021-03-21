@@ -63,7 +63,7 @@ while play:
                 if add_sum_cards(player) > add_sum_cards(dealer) and add_sum_cards(dealer) < 17:
                     add_dealer_cards(player, dealer, main_deck)
 
-                if add_sum_cards(player) == add_sum_cards(dealer) and add_sum_cards(dealer) > 17:
+                if add_sum_cards(player) == add_sum_cards(dealer) and add_sum_cards(dealer) >= 17:
                     break
 
                 if add_sum_cards(dealer) > 21:
